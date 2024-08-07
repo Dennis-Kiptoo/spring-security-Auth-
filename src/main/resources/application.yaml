@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: Spring-Security
+  security:
+    jwt:
+      secret-key: 9SyECk96oDsTmXfogIieDI0cD/8FpnojlYSUJT5U9I/FGVmBz5oskmjOR8cbXTvoPjX+Pq/T/b1PqpHX0lYm0g==
+      expiration-time: 86400000 # Token expiration time in milliseconds (1 day)
+      refresh-expiration-time: 2592000000 # Refresh token expiration time in milliseconds (30 days)
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring_security
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: update
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  email:
+    smtp:
+      host: smtp.gmail.com
+      port: 587
+      username: mkeighz@gmail.com
+      password: nvhr ihaj wzem onhj
+      from: s
+  sms:
+    twilio:
+      account-sid: your-twilio-account-sid
+      auth-token: your-twilio-auth-token
+      phone-number: your-twilio-phone-number
+  logging:
+    level:
+      root: INFO
+      com.Stoicodex.Spring.Security: DEBUG
+      org.springframework.security: DEBUG
+
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health, info, metrics
+  paths:
+    public: ["/api/public/**", "/auth/**"]
+    protected: ["/api/protected/**"]
+  user:
+    default-roles: USER
+
+server:
+  port: 3333
+  tomcat:
+    access-log-enabled: true
